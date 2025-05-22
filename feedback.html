@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Feedback</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow-x: hidden;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: #6d28d9; /* Good purple */
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            font-size: 2em;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar sup {
+            font-size: 0.5em;
+        }
+
+        .navbar span {
+            display: block;
+            font-size: 0.5em;
+            margin-top: 5px;
+        }
+
+        .content {
+            flex: 1; /* Allows content to expand */
+            width: 100%;
+            max-width: 900px;
+            margin: 100px auto 60px auto; /* Adjusted bottom margin */
+            padding: 20px;
+            text-align: center;
+        }
+
+        .search-container {
+            margin-bottom: 30px;
+        }
+
+        .search-container input[type="text"] {
+            padding: 12px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-container input[type="text"]:focus {
+            border-color: #6d28d9; /* Good purple */
+            outline: none;
+        }
+
+        .course-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .course-card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 270px;
+            text-align: center;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            background-color: #dbeafe; /* Light blue */
+        }
+
+        .course-card h3 {
+            font-size: 1.4em;
+            color: #6d28d9; /* Good purple */
+            margin: 0 0 10px;
+        }
+
+        .course-card p {
+            font-size: 0.95em;
+            color: #555;
+            margin: 0;
+        }
+
+        .feedback {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            max-height: 500px;
+            overflow-y: auto;
+            display: none;
+            text-align: left;
+            margin: 0 auto;
+            width: 80%;
+            box-sizing: border-box;
+        }
+
+        .feedback-container {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            background-color: #f3f1f7; /* Light gray */
+            border-radius: 8px;
+        }
+
+        .feedback-container h3 {
+            margin: 0;
+            font-size: 1.3em;
+            color: #6d28d9; /* Good purple */
+        }
+
+        .feedback-container p {
+            font-size: 1em;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .footer {
+            width: 100%;
+            background-color: #6d28d9; /* Good purple */
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.9em;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+            /* Removed position: fixed */
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        Edu<sup>2</sup> Feedback
+    </div>
+
+    <div class="content">
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Search for a course...">
+        </div>
+
+        <div class="course-list" id="course-list">
+            <!-- Course cards will be displayed here -->
+        </div>
+
+        <div class="feedback" id="feedback-container">
+            <!-- Feedback will be displayed here -->
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Edu². All rights reserved.</p>
+    </div>
+
+    <script>
+        const courses = [
+            { name: 'HTML', description: 'View feedback for HTML course.' },
+            { name: 'CSS', description: 'View feedback for CSS course.' },
+            { name: 'JavaScript', description: 'View feedback for JS course.' },
+            { name: 'PHP', description: 'View feedback for PHP course.' },
+            { name: 'Java', description: 'View feedback for JAVA course.' }
+        ];
+
+        function displayCourses(courseFilter = '') {
+            const courseList = document.getElementById('course-list');
+            courseList.innerHTML = '';
+
+            const filteredCourses = courses.filter(course =>
+                course.name.toLowerCase().includes(courseFilter.toLowerCase())
+            );
+
+            filteredCourses.forEach(course => {
+                const courseCard = document.createElement('div');
+                courseCard.className = 'course-card';
+                courseCard.dataset.course = course.name;
+                courseCard.innerHTML = `
+                    <h3>${course.name}</h3>
+                    <p>${course.description}</p>
+                `;
+                courseList.appendChild(courseCard);
+            });
+        }
+
+        function displayFeedback(course) {
+            const container = document.getElementById('feedback-container');
+            container.innerHTML = '';
+
+            let feedback = JSON.parse(localStorage.getItem(course)) || [];
+            if (feedback.length > 0) {
+                feedback.forEach(comment => {
+                    const feedbackElement = document.createElement('div');
+                    feedbackElement.className = 'feedback-container';
+                    feedbackElement.innerHTML = `
+                        <h3>Feedback:</h3>
+                        <p>${comment}</p>
+                    `;
+                    container.appendChild(feedbackElement);
+                });
+                container.style.display = 'block';
+            } else {
+                container.innerHTML = '<p>No feedback available for this course.</p>';
+                container.style.display = 'block';
+            }
+        }
+
+        document.getElementById('course-list').addEventListener('click', function(event) {
+            const courseCard = event.target.closest('.course-card');
+            if (courseCard) {
+                const course = courseCard.dataset.course;
+                displayFeedback(course);
+            }
+        });
+
+        document.getElementById('search').addEventListener('input', function() {
+            const query = this.value;
+            displayCourses(query);
+        });
+
+        displayCourses();
+    </script>
+</body>
+</html>

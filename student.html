@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #8c9eff;
+            color: #fff;
+            padding: 1rem;
+        }
+
+        .navbar h1 {
+            margin: 0;
+        }
+
+        .logout-button {
+            background-color: #ff5252;
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .logout-button:hover {
+            background-color: #ff1744;
+        }
+
+        .background-video-container {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .background-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .content-wrapper {
+            display: flex;
+            height: calc(100vh - 300px);
+        }
+
+        .sidebar {
+            background-color: #fff;
+            width: 250px;
+            padding: 1rem;
+            border-right: 1px solid #ddd;
+            height: 100%;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 1rem;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            display: block;
+            padding: 0.5rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #e8eaf6;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 2rem;
+        }
+
+        .container-wrapper {
+            display: none;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .container {
+            width: 180px;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            background-color: #90caf9;
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: transform 0.3s, background-color 0.3s;
+            font-size: 1.2rem;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .container:hover {
+            transform: scale(1.05);
+            background-color: #64b5f6;
+        }
+
+        .question-form {
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .question-form h2 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .question-form label {
+            margin-bottom: 0.5rem;
+            display: block;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .question-form label:hover {
+            background-color: #f0f0f0;
+        }
+
+        .question-form input[type="radio"] {
+            margin-right: 0.5rem;
+            display: none;
+        }
+
+        .question-form input[type="radio"]:checked + label {
+            background-color: #9575cd;
+            border-color: #9575cd;
+            color: #fff;
+        }
+
+        .question-form button {
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            border: none;
+            background-color: #7b1fa2;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+
+        .question-form button:hover {
+            background-color: #4a0072;
+        }
+
+        .navigation-button {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: #7b1fa2;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+
+        .navigation-button:hover {
+            background-color: #4a0072;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>Student Dashboard</h1>
+        <a href="javascript:void(0)" class="logout-button" onclick="logout()">Logout</a>
+    </nav>
+
+    <div class="background-video-container">
+        <video autoplay muted loop class="background-video">
+            <source src="stu.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="content-wrapper">
+        <div id="sidebar" class="sidebar">
+            <ul>
+                <li><a href="#" onclick="showContainers()">Quizzes</a></li>
+                <li><a href="ins.html" onclick="showInstructions()">Instructions</a></li>
+                <li><a href="reward.html">Rewards</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div id="containers" class="container-wrapper">
+                <div class="container" onclick="loadQuiz('Java')">Java</div>
+                <div class="container" onclick="loadQuiz('HTML')">HTML</div>
+                <div class="container" onclick="loadQuiz('CSS')">CSS</div>
+                <div class="container" onclick="loadQuiz('JS')">JS</div>
+                <div class="container" onclick="loadQuiz('PHP')">PHP</div>
+            </div>
+
+            <div id="quiz-container" class="question-form">
+                <h2 id="question-topic">Select a topic to begin</h2>
+                <form id="quiz-form">
+                    <div id="questions-container"></div>
+                    <div id="navigation-buttons">
+                        <button type="button" class="navigation-button" id="previous-button" onclick="previousQuestion()" style="display:none;">Previous</button>
+                        <button type="button" class="navigation-button" id="next-button" onclick="nextQuestion()">Next</button>
+                        <button type="button" class="navigation-button" id="submit-button" onclick="submitQuiz()" style="display:none;">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="no-questions-message" class="question-form" style="display:none;">
+                <p>No questions are set by the admin yet. Please check back later.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let questions = [];
+        let currentQuestion = 0;
+
+        function showContainers() {
+            document.getElementById('containers').style.display = 'flex';
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('no-questions-message').style.display = 'none';
+        }
+
+        function loadQuiz(containerName) {
+            document.getElementById('containers').style.display = 'none';
+            document.getElementById('quiz-container').style.display = 'flex';
+            document.getElementById('no-questions-message').style.display = 'none';
+            document.getElementById('question-topic').innerText = containerName;
+
+            fetchQuestions(containerName);
+        }
+
+        function fetchQuestions(containerName) {
+            questions = JSON.parse(localStorage.getItem('questions')) || {};
+            questions = questions[containerName] || [];
+
+            if (questions.length > 0) {
+                displayQuestion();
+            } else {
+                document.getElementById('quiz-container').style.display = 'none';
+                document.getElementById('no-questions-message').style.display = 'flex';
+            }
+        }
+
+        function displayQuestion() {
+            const questionElement = document.getElementById('questions-container');
+            questionElement.innerHTML = `
+                <div>
+                    <h3>${questions[currentQuestion].question}</h3>
+                    ${questions[currentQuestion].options.map((option, index) => `
+                        <input type="radio" id="option${index}" name="question${currentQuestion}" value="${option}">
+                        <label for="option${index}" onclick="selectOption(${index})">${option}</label><br>
+                    `).join('')}
+                </div>
+            `;
+
+            const selectedOption = JSON.parse(localStorage.getItem('selectedOptions')) || {};
+            if (selectedOption[currentQuestion] !== undefined) {
+                document.getElementById(`option${selectedOption[currentQuestion]}`).checked = true;
+            }
+
+            document.getElementById('previous-button').style.display = currentQuestion === 0 ? 'none' : 'inline-block';
+            document.getElementById('next-button').style.display = currentQuestion === questions.length - 1 ? 'none' : 'inline-block';
+            document.getElementById('submit-button').style.display = currentQuestion === questions.length - 1 ? 'inline-block' : 'none';
+        }
+
+        function selectOption(index) {
+            const selectedOption = JSON.parse(localStorage.getItem('selectedOptions')) || {};
+            selectedOption[currentQuestion] = index;
+            localStorage.setItem('selectedOptions', JSON.stringify(selectedOption));
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                displayQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                displayQuestion();
+            }
+        }
+
+        function submitQuiz() {
+            const category = document.getElementById('question-topic').innerText.split(' ')[0];
+            const selectedAnswers = [];
+            const totalQuestions = questions.length;
+
+            for (let i = 0; i < totalQuestions; i++) {
+                const selectedOption = document.querySelector(`input[name="question${i}"]:checked`);
+                selectedAnswers.push(selectedOption ? selectedOption.value : null);
+            }
+
+            // Fetch the correct answers set by the admin
+            const correctAnswers = JSON.parse(localStorage.getItem('correctAnswers')) || {};
+            const correctAnswersForQuiz = correctAnswers[category] || [];
+
+            // Calculate score
+            let score = 0;
+            for (let i = 0; i < correctAnswersForQuiz.length; i++) {
+                // Ensure the selected answer is being compared with the correct answer
+                if (selectedAnswers[i] === correctAnswersForQuiz[i]) {
+                    score++;
+                }
+            }
+
+            // Display the score
+            document.body.innerHTML = `
+                <div style="text-align: center; margin-top: 2rem;">
+                    <h1>Your Score: ${score} out of ${totalQuestions}</h1>
+                    <button onclick="window.location.href='${score > 2 ? 'reward.html' : 'do.html'}'">Continue</button>
+                </div>
+            `;
+        }
+
+        function logout() {
+            window.location.href = 'one.html';
+        }
+    </script>
+</body>
+</html>

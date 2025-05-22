@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            color: #fff;
+        }
+        .navbar img {
+            height: 50px;
+        }
+        .navbar h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .navbar button {
+            background-color: #f44336;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .navbar button:hover {
+            background-color: #e53935;
+        }
+        .main {
+            position: relative;
+            width: 100%;
+            height: auto;
+        }
+        .main video {
+            width: 100vw;
+            height: 500px;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .content {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: auto;
+            padding: 1rem;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #f4f4f4;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .sidebar a {
+            text-decoration: none;
+            color: #333;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            text-align: center;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #ddd;
+        }
+        .main-content {
+            flex: 1;
+            padding: 1rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .topic-container {
+            display: none;
+            margin: 1rem 0;
+        }
+        .topic {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            margin: 0.5rem;
+            background-color: #e0e0e0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            text-align: center;
+            line-height: 100px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+        }
+        .topic:hover {
+            background-color: #ccc;
+        }
+        .question-form {
+            display: none;
+        }
+        .question-form .input-group {
+            margin-bottom: 1rem;
+        }
+        .question-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .question-form input, .question-form textarea {
+            width: 100%;
+            max-width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .question-form button {
+            padding: 0.5rem 1rem;
+            margin-right: 0.5rem;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .question-form button:hover {
+            background-color: #45a049;
+        }
+        .reset-button {
+            padding: 0.5rem 1rem;
+            background-color: #f44336;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+        }
+        .reset-button:hover {
+            background-color: #e53935;
+        }
+        .saved-questions {
+            margin-top: 1rem;
+            display: none;
+        }
+        .saved-questions table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .saved-questions table, .saved-questions th, .saved-questions td {
+            border: 1px solid #ddd;
+        }
+        .saved-questions th, .saved-questions td {
+            padding: 8px;
+            text-align: left;
+        }
+        .saved-questions th {
+            background-color: #f4f4f4;
+        }
+        .saved-questions tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .student-info {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 1rem;
+            margin-top: 1rem;
+            background-color: #f9f9f9;
+        }
+        .student-info h3 {
+            margin-top: 0;
+        }
+        .student-info p {
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1> Edu<sup>2</sup> Admin Dashboard</h1>
+        <button onclick="logout()">Logout</button>
+    </div>
+    <div class="main">
+        <video autoplay muted loop>
+            <source src="admin.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="content">
+        <div class="sidebar">
+            <a href="#set-questions" onclick="showTopics()">Set Questions</a>
+            <a href="#rewards" onclick="showRewards()">Rewards</a>
+            <a href="#password-setting">Password Setting</a>
+        </div>
+        <div class="main-content">
+            <div class="topic-container">
+                <div class="topic" onclick="showQuestionForm('java')">Java</div>
+                <div class="topic" onclick="showQuestionForm('html')">HTML</div>
+                <div class="topic" onclick="showQuestionForm('js')">JS</div>
+                <div class="topic" onclick="showQuestionForm('css')">CSS</div>
+                <div class="topic" onclick="showQuestionForm('php')">PHP</div>
+            </div>
+            <div class="question-form">
+                <div class="input-group">
+                    <label for="question">Question <span id="question-number"></span></label>
+                    <textarea id="question" name="question"></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="option1">Option 1</label>
+                    <input type="text" id="option1" name="option1">
+                </div>
+                <div class="input-group">
+                    <label for="option2">Option 2</label>
+                    <input type="text" id="option2" name="option2">
+                </div>
+                <div class="input-group">
+                    <label for="option3">Option 3</label>
+                    <input type="text" id="option3" name="option3">
+                </div>
+                <div class="input-group">
+                    <label for="option4">Option 4</label>
+                    <input type="text" id="option4" name="option4">
+                </div>
+                <div class="input-group">
+                    <label for="correct-answer">Correct Answer</label>
+                    <input type="text" id="correct-answer" name="correct-answer">
+                </div>
+                <button onclick="saveQuestion()">Save Question</button>
+                <button class="reset-button" onclick="resetForm()">Reset Form</button>
+                <button class="prev-button" onclick="prevQuestion()" style="display: none;">Previous</button>
+                <button class="check-button" onclick="checkAnswers()">Check</button>
+            </div>
+            <div class="saved-questions">
+                <h3>Saved Questions</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Question</th>
+                            <th>Options</th>
+                            <th>Correct Answer</th>
+                        </tr>
+                    </thead>
+                    <tbody id="saved-questions-body">
+                        <!-- Questions will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="rewards">
+                <h3>Student Rewards</h3>
+                <div class="student-info" id="student-info">
+                    <!-- Student information will be displayed here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let questions = [];
+        let currentQuestionIndex = 0;
+
+        function logout() {
+            window.location.href = 'one.html';
+        }
+        function showTopics() {
+            document.querySelector('.topic-container').style.display = 'flex';
+            document.querySelector('.question-form').style.display = 'none';
+            document.querySelector('.rewards').style.display = 'none';
+        }
+        function showQuestionForm(topic) {
+            document.querySelector('.topic-container').style.display = 'none';
+            document.querySelector('.question-form').style.display = 'block';
+            document.querySelector('.rewards').style.display = 'none';
+            document.getElementById('question-number').textContent = `Question ${questions.length + 1}`;
+            document.querySelector('.prev-button').style.display = questions.length ? 'inline-block' : 'none';
+            document.querySelector('.check-button').style.display = 'none';
+        }
+        function showRewards() {
+            document.querySelector('.topic-container').style.display = 'none';
+            document.querySelector('.question-form').style.display = 'none';
+            document.querySelector('.rewards').style.display = 'block';
+            // Fetch and display student information here
+            document.getElementById('student-info').innerHTML = `
+                <p><strong>Username:</strong> JohnDoe</p>
+                <p><strong>Email:</strong> john.doe@example.com</p>
+                <p><strong>Scores:</strong> 90, 85, 92</p>
+            `;
+        }
+        function saveQuestion() {
+            const question = document.getElementById('question').value;
+            const option1 = document.getElementById('option1').value;
+            const option2 = document.getElementById('option2').value;
+            const option3 = document.getElementById('option3').value;
+            const option4 = document.getElementById('option4').value;
+            const correctAnswer = document.getElementById('correct-answer').value;
+
+            if (question && option1 && option2 && option3 && option4 && correctAnswer) {
+                questions.push({
+                    subject: document.querySelector('.topic-container .topic:hover').textContent,
+                    question,
+                    options: [option1, option2, option3, option4],
+                    correctAnswer
+                });
+                document.getElementById('question').value = '';
+                document.getElementById('option1').value = '';
+                document.getElementById('option2').value = '';
+                document.getElementById('option3').value = '';
+                document.getElementById('option4').value = '';
+                document.getElementById('correct-answer').value = '';
+                document.querySelector('.prev-button').style.display = 'inline-block';
+                document.querySelector('.check-button').style.display = 'inline-block';
+            } else {
+                alert('Please fill out all fields.');
+            }
+        }
+        function resetForm() {
+            document.querySelector('.question-form').reset();
+        }
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayCurrentQuestion();
+            }
+        }
+        function displayCurrentQuestion() {
+            const question = questions[currentQuestionIndex];
+            document.getElementById('question').value = question.question;
+            const [option1, option2, option3, option4] = question.options;
+            document.getElementById('option1').value = option1;
+            document.getElementById('option2').value = option2;
+            document.getElementById('option3').value = option3;
+            document.getElementById('option4').value = option4;
+            document.getElementById('correct-answer').value = question.correctAnswer;
+            document.getElementById('question-number').textContent = `Question ${currentQuestionIndex + 1}`;
+        }
+        function checkAnswers() {
+            const savedQuestionsBody = document.getElementById('saved-questions-body');
+            savedQuestionsBody.innerHTML = '';
+            questions.forEach((q, index) => {
+                savedQuestionsBody.innerHTML += `
+                    <tr>
+                        <td>${q.subject}</td>
+                        <td>${q.question}</td>
+                        <td>${q.options.join('<br>')}</td>
+                        <td>${q.correctAnswer}</td>
+                    </tr>
+                `;
+            });
+            document.querySelector('.saved-questions').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

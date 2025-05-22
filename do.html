@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try Again Page</title>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* General Reset and Body Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #007bff;
+            padding: 1rem 2rem;
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-left h1 {
+            margin: 0;
+            font-size: 1.75rem;
+        }
+
+        .navbar-right .logout-button {
+            background-color: #ff4c4c;
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar-right .logout-button:hover {
+            background-color: #e43e3e;
+        }
+
+        /* Background Video Styling */
+        .video-container {
+            margin-top: 70px; /* Offset by navbar height */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .background-video {
+            width: 100%;
+            height: auto;
+            max-height: 400px; /* Limit video height */
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Tips Container Styling */
+        .tips-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 2rem;
+            background-color: #ffffff;
+            flex: 1;
+        }
+
+        .tip-box {
+            width: calc(33.33% - 2rem);
+            margin: 1rem;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            min-width: 280px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 123, 255, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .tip-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .tip-box h2 {
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+            color: #007bff;
+        }
+
+        .tip-box p {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .tip-box .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            transition: color 0.3s;
+        }
+
+        /* Example color styles for icons */
+        .icon.bullseye { color: #ff6f61; }
+        .icon.th-list { color: #ffcc00; }
+        .icon.chart-pie { color: #4caf50; }
+        .icon.hourglass-half { color: #2196f3; }
+        .icon.lightbulb { color: #ffeb3b; }
+        .icon.calendar-alt { color: #9c27b0; }
+        .icon.users { color: #03a9f4; }
+        .icon.memory { color: #ff5722; }
+        .icon.apple-alt { color: #8bc34a; }
+        .icon.sync-alt { color: #607d8b; }
+
+        /* Go Back Button Styling */
+        .go-back-button {
+            display: block;
+            width: 220px;
+            margin: 2rem auto;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .go-back-button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .tip-box {
+                width: calc(50% - 2rem);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tip-box {
+                width: calc(100% - 2rem);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <h1>Edu Square</h1>
+        </div>
+        <div class="navbar-right">
+            <a href="student.html" class="logout-button">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Background Video -->
+    <div class="video-container">
+        <video autoplay muted loop class="background-video">
+            <source src="do.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Tips Container -->
+    <div class="tips-container">
+        <div class="tip-box">
+            <i class="fas fa-bullseye icon bullseye"></i>
+            <h2>Effective Goal Setting</h2>
+            <p>Set realistic goals and break tasks into smaller steps.</p>
+        </div>
+        <div class="tip-box">
+            <i class="fas fa-th-list icon th-list"></i>
+            <h2>Organized Study Space</h2>
+            <p>Create a dedicated study space free from distractions.</p>
+        </div>
+        <div class="tip-box">
+            <i class="fas fa-chart-pie icon chart-pie"></i>
+            <h2>Use Visual Aids</h2>
+            <p>Use visual aids like charts and graphs to enhance learning.</p>
+        </div>
+        <div class="tip-box">
+            <i class="fas fa-hourglass-half icon hourglass-half"></i>
+            <h2>Regular Breaks</h2>
+            <p>Take regular breaks to maintain focus and avoid burnout.</p>
+        </div>
+        <div class="tip-box">
+            <i class="fas fa-lightbulb icon lightbulb"></i>
+            <h2>Active Learning</h2>
+            <p>Practice active learning by teaching concepts to others.</p>
+        </div>
+        <div class="tip-box">
+            <i class="fas fa-calendar-alt icon calendar-alt"></i>
+            <h2>Stay Organized</h2>
+            <p>Stay organized with a planner or digital calendar.</p>
+        </div>
+        <div class="tip-box">
+            <i class="fas fa-users icon users"></i>
+            <h2>Join Study Groups</h2>
+            <p>Join study groups to gain different perspectives.</p>
+        </div>
+        <div class="tip-box">
+            <i class="fas fa-memory icon memory"></i>
+            <h2>Mnemonic Devices</h2>
+            <p>Use mnemonic devices to remember key information.</p>
+        </div>
+        <div class="tip-box">
+            <i class="fas fa-apple-alt icon apple-alt"></i>
+            <h2>Hydration and Nutrition</h2>
+            <p>Stay hydrated and eat healthy snacks while studying.</p>
+        </div>
+        <div class="tip-box">
+            <i class="fas fa-sync-alt icon sync-alt"></i>
+            <h2>Regular Review</h2>
+            <p>Review and revise regularly to reinforce learning.</p>
+        </div>
+    </div>
+
+    <!-- Go Back Button -->
+    <a href="student.html" class="go-back-button">Go Back</a>
+</body>
+</html>

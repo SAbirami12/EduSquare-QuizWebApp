@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 100px;
+      background-color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      color: #333;
+      z-index: 1000;
+    }
+
+    .navbar img {
+      height: 160px; /* Adjusted for better fit */
+      width: 200px;
+      margin-bottom: -50px;
+    }
+
+    .navbar .nav-links {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar a {
+      color: #333;
+      text-decoration: none;
+      padding: 15px;
+      display: inline-block;
+      position: relative;
+    }
+
+    .navbar .nav-links {
+      margin-right: 60px;
+    }
+
+    .navbar .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .navbar .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .navbar .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .navbar .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .navbar .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    .content {
+      padding: 20px;
+      margin-top: 130px; /* Adjusted to accommodate the video */
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    p {
+      color: #555;
+      font-size: 30px;
+      margin-top: 20px;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      margin-top: 20px;
+    }
+
+    .video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 90%;
+      height: 90%;
+      object-fit: cover;
+      margin-left: 70px;
+      margin-top: 400px;
+      background-color: #c1e6e2;
+    }
+
+    /* Astronaut icon styles */
+    .astronaut {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 80px; /* Adjust size as needed */
+      height: 80px; /* Adjust size as needed */
+      background: url('as.gif') no-repeat center center;
+      background-size: cover;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.3); /* Optional: add a shadow to improve visibility */
+    }
+
+    /* Message container styles */
+    .message-container {
+      position: fixed;
+      bottom: 120px; /* Adjust position to appear above astronaut */
+      right: 20px;
+      background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient background */
+      color: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+      font-size: 16px;
+      font-weight: bold;
+      max-width: 250px; /* Adjust width as needed */
+      text-align: center;
+      animation: fadeSlide 5s infinite; /* Animation */
+    }
+
+    @keyframes fadeSlide {
+      0% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      50% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <img src="logo2.png" alt="Logo">
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <div class="dropdown">
+      <a href="#" class="dropbtn">Courses</a>
+      <div class="dropdown-content">
+        <a href="course1.html">HTML</a>
+        <a href="#">Course 2</a>
+        <a href="#">Course 3</a>
+        <a href="#">Course 4</a>
+        <a href="#">Course 5</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <a href="#" class="dropbtn">Gen classes</a>
+      <div class="dropdown-content">
+        <a href="table.html">Course Detail</a>
+        <a href="#">Gen Class 2</a>
+        <a href="#">Gen Class 3</a>
+        <a href="#">Gen Class 4</a>
+        <a href="#">Gen Class 5</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <a href="login.html" class="dropbtn">Quizzes</a>
+      <div class="dropdown-content">
+      </div>
+    </div>
+    <a href="admin.html">Admin</a> <!-- Added Admin link -->
+  </div>
+</div>
+
+<div class="content">
+  <p>Hello, we are here for you to clarify your doubts in web designing!⚡</p>
+  <div class="video-container">
+    <video autoplay muted loop>
+      <source src="PROMO.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+
+<!-- Message container -->
+<div class="message-container">
+  Hey, I am here to clarify your questions!
+</div>
+
+<!-- Astronaut icon -->
+<a href="ask.html" class="astronaut"></a>
+
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>edu² - Services & Contact Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        header {
+            background: #007BFF;
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.8rem;
+        }
+        header p {
+            margin: 0.5rem 0;
+            font-size: 1.4rem;
+            font-weight: 300;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+        }
+        .services, .contact {
+            background: #fff;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .services:hover, .contact:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        .services h2, .contact h2 {
+            margin-top: 0;
+            color: #007BFF;
+            font-size: 2.2rem;
+            font-weight: 500;
+        }
+        .services .service-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        .services .service-item:last-child {
+            border-bottom: none;
+        }
+        .services .service-item i {
+            font-size: 2.5rem;
+            color: #007BFF;
+            margin-right: 1.5rem;
+        }
+        .services .service-item h3 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: #333;
+            font-weight: 400;
+        }
+        .services .service-item p {
+            margin: 0.5rem 0 0;
+            font-size: 1rem;
+            color: #555;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        .contact-form button {
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background 0.3s;
+        }
+        .contact-form button:hover {
+            background: #0056b3;
+        }
+        .contact p a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .contact p a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background: #007BFF;
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem 0;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>edu²</h1>
+            <p>Your Gateway to Learning</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="services">
+            <h2><i class="fas fa-chalkboard-teacher"></i> Our Services</h2>
+            <div class="service-item">
+                <i class="fas fa-book"></i>
+                <div>
+                    <h3>Courses</h3>
+                    <p>Enroll in a wide range of professionally designed courses to boost your skills and knowledge. Our courses cover various fields and are created by industry experts to ensure a high-quality learning experience.</p>
+                </div>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-graduation-cap"></i>
+                <div>
+                    <h3>Free Courses</h3>
+                    <p>Access a selection of free courses to explore new subjects and get a feel for our content. Ideal for beginners or those looking to enhance their knowledge without any financial commitment.</p>
+                </div>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-clipboard-list"></i>
+                <div>
+                    <h3>Quizzes</h3>
+                    <p>Challenge yourself with quizzes designed to reinforce learning. Get instant feedback to track your progress and improve your understanding of the subject matter.</p>
+                </div>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-question-circle"></i>
+                <div>
+                    <h3>Ask Questions</h3>
+                    <p>Have questions? Our knowledgeable instructors are here to assist. Submit your questions through our platform and receive detailed answers to support your learning journey.</p>
+                </div>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-tools"></i>
+                <div>
+                    <h3>And More</h3>
+                    <p>Explore additional resources and tools that we offer to enhance your educational experience. Stay updated with new features and exciting additions to our platform.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact">
+            <h2><i class="fas fa-envelope"></i> Contact Us</h2>
+            <p>We’d love to hear from you! Reach out with any questions, support needs, or feedback using the form below or our contact details.</p>
+            <div class="contact-form">
+                <form action="/submit_form" method="POST">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                    
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+            <p>Alternatively, you can contact us at:</p>
+            <p>Email: <a href="mailto:support@edu2.com">support@edu2.com</a></p>
+            <p>Phone: +1 (234) 567-890</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 edu². All rights reserved.</p>
+    </footer>
+</body>
+</html>

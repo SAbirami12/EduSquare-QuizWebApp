@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details - Edu²</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f5f7f9;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: #0056b3; /* Dark blue */
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: 700;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 2em;
+            font-weight: 700;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        .navbar .nav-item {
+            margin: 0 20px;
+            display: inline-block;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+
+        .navbar .nav-item:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            padding: 80px 20px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        .section {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            font-size: 2.2em;
+            color: #0056b3;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-align: center;
+            border-bottom: 3px solid #0056b3;
+            padding-bottom: 10px;
+        }
+
+        .details {
+            margin-top: 20px;
+        }
+
+        .details p {
+            font-size: 1.2em;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .details .label {
+            font-weight: 700;
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">Edu²</div>
+        <a href="enroll.html" class="nav-item">Enroll Edu² Courses</a>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2>Course Enrollment Details</h2>
+            <div class="details">
+                <p><span class="label">Full Name:</span> <span id="full-name"></span></p>
+                <p><span class="label">Email Address:</span> <span id="email-address"></span></p>
+                <p><span class="label">Phone Number:</span> <span id="phone-number"></span></p>
+                <p><span class="label">Selected Course:</span> <span id="selected-course"></span></p>
+                <p><span class="label">Additional Details:</span> <span id="additional-details"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Extract query parameters from URL
+        const queryParams = new URLSearchParams(window.location.search);
+
+        // Get form data from query parameters
+        const name = queryParams.get('name');
+        const email = queryParams.get('email');
+        const phone = queryParams.get('phone');
+        const course = queryParams.get('course');
+        const details = queryParams.get('details');
+
+        // Display data in the HTML elements
+        document.getElementById('full-name').textContent = name || 'N/A';
+        document.getElementById('email-address').textContent = email || 'N/A';
+        document.getElementById('phone-number').textContent = phone || 'N/A';
+        document.getElementById('selected-course').textContent = course || 'N/A';
+        document.getElementById('additional-details').textContent = details || 'N/A';
+    </script>
+</body>
+</html>

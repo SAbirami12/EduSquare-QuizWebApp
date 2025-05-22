@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <title>Your Education Website</title>
+    <style>
+        /* General reset and basic styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #495057;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Header and logo styles */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            border-bottom: 1px solid #dee2e6;
+            position: fixed;
+            width: 100%;
+            height: 100px;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo img {
+            height: 190px;
+            width: 240px;
+            margin-top: -20px;
+        }
+
+        /* Hero section styles */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            max-width: 1200px; /* Adjust as needed */
+            width: 100%;
+            padding: 0 2rem;
+            z-index: 1; /* Ensure content is on top of the video */
+        }
+ .center{
+  margin-bottom: -470px;
+  background-color: #E74C3C;
+  display: inline-block;
+  margin-left:250px;
+            padding: 0.8rem 1.5rem;
+             /* Default button color */
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+
+ }
+ .center:hover {
+            background-color: #F1948A; /* Darker shade on hover */
+            transform: translateY(-3px);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+             /* Default button color */
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase; /* Uppercase text */
+        }
+
+        
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Main section styles */
+        main {
+            padding-top: 120px;
+            display: flex;
+            justify-content: center;
+            padding: 2rem;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .whole {
+            background-color: #C2DFFF;
+            width: 100%; /* Full width */
+            padding: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            text-align: center; /* Center align text within .whole */
+        }
+
+        .whole h1 {
+            width: 100%;
+            font-size: 2.5rem; /* Adjust font size as needed */
+            margin-bottom: 2rem;
+        }
+
+        .container {
+            background-color: #ffffff;
+            color: #495057;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            width: 300px;
+            height: 300px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .container h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .container p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .container .btn {
+            margin-top: auto;
+            padding: 0.6rem 1.2rem; /* Reduced padding */
+            font-size: 0.9rem; /* Reduced font size */
+            background-color: #583759; /* Default button color */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase; /* Uppercase text */
+        }
+
+        .container .btn:hover {
+            background-color: #7E587E; /* Darker shade on hover */
+        }
+
+        .attractive-container {
+            background-color: #F4CCCC; /* Light red background */
+            padding: 4rem 2rem; /* Increased padding for better spacing */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            text-align: center; /* Center align text */
+            max-width: 800px; /* Limit width for readability */
+            margin-bottom: 3rem; /* Adjusted margin bottom */
+            opacity: 0;
+            animation: attractiveFadeIn 2s ease forwards, attractiveSlideInUp 2s ease forwards;
+        }
+
+        .attractive-container h2 {
+            font-size: 2.5rem; /* Larger font size for heading */
+            margin-bottom: 1.5rem; /* Space below heading */
+            color: #343a40; /* Dark text color for contrast */
+        }
+
+        .attractive-container p {
+            font-size: 1.6rem; /* Slightly larger font size for paragraph */
+            line-height: 2.2rem; /* Increased line height for readability */
+            color: #6c757d; /* Slightly darker text color for contrast */
+            max-width: 600px; /* Limit paragraph width for readability */
+            margin: 0 auto 2rem; /* Center and space paragraphs */
+        }
+
+        @keyframes attractiveFadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes attractiveSlideInUp {
+            from {
+                transform: translateY(50px);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        /* Video styles */
+        .video-container {
+    width: 105%; /* Full width */
+    background-color: #fff3cd; /* Light yellow background color */
+    padding: 2rem; /* Padding for spacing */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin-bottom: 7rem; /* 7 inches space below the video */
+    text-align: center; /* Center align text */
+    position: relative; /* Ensure proper positioning */
+    overflow: hidden; /* Hide overflow to avoid extra space */
+}
+
+.video-container video {
+    width: 60%; /* Adjust as needed for your layout */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 0; /* No border radius */
+    display: block; /* Remove extra space below video */
+    margin: 0 auto; /* Center the video horizontally */
+}
+
+        /* Footer styles */
+        footer {
+            position: relative;
+            width: 100%; /* Full width */
+            margin-top: 3rem; /* Space above footer */
+            height: 600px; /* Increased height of the background */
+            overflow: hidden;
+        }
+
+        .footer-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure the video covers the footer */
+            z-index: -1; /* Place video behind the text */
+            border-radius: 0; /* No border radius */
+        }
+
+        .footer-content {
+            position: relative;
+            padding: 4rem 2rem; /* Padding around footer content */
+            color: #fff;
+            text-align: center;
+            z-index: 1; /* Ensure footer content is on top */
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: #fff; /* White color for links */
+            text-decoration: none; /* No underline */
+            font-size: 1rem; /* Font size for links */
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+
+        .footer-social-links {
+            margin-bottom: 1rem;
+        }
+
+        .footer-social-links a {
+            color: #fff; /* White color for social icons */
+            text-decoration: none; /* No underline */
+            font-size: 1.5rem; /* Font size for social icons */
+            margin: 0 0.5rem;
+        }
+
+        .footer-social-links a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+
+        .footer-copy {
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo2.png" alt="Your Logo">
+        </div>
+    </header><br><br><br><br>
+
+    <section class="hero">
+        <video autoplay muted loop>
+            <source src="hero.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-content">
+          <a href="one.html" class="center">Get Started</a>
+      </div>
+    </section><br><br><br><br><br>
+    
+    <main id="main-content">
+        <section class="whole">
+            <h1>Edu<sup>2</sup> Courses</h1>
+            <div class="container">
+                <h2>PHP</h2>
+                <p>Learn PHP programming language for web development.</p>
+                <a href="#" class="btn">Learn More</a>
+            </div>
+
+            <div class="container">
+                <h2>Java</h2>
+                <p>Explore the fundamentals of Java programming.</p>
+                <a href="#" class="btn">Explore Courses</a>
+            </div>
+
+            <div class="container">
+                <h2>JavaScript</h2>
+                <p>Master JavaScript for interactive web applications.</p>
+                <a href="#" class="btn">Get Started</a>
+            </div>
+
+            <div class="container">
+                <h2>Web Development</h2>
+                <p>Discover essential skills for modern web development.</p>
+                <a href="course1.html" class="btn">Apply Now</a>
+            </div>
+        </section><br><br><br><br><br><br><br>
+
+        <!-- What Edu² Offers You section -->
+        <section class="attractive-container">
+            <h2>What Edu<sup>2</sup> Offers You ?</h2>
+            <p>Discover a world of opportunities with Edu<sup>2</sup>. We provide cutting-edge courses designed to equip you with practical skills in PHP, Java, JavaScript, and Web Development. Whether you are a beginner or looking to advance your skills, our courses are tailored to help you succeed.</p>
+        </section><br><br><br><br><br><br><br>
+
+        <!-- Video section -->
+        <section class="video-container">
+            <video autoplay muted loop>
+                <source src="intro.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </section><br><br>
+    </main>
+
+    <footer>
+        <video class="footer-video" autoplay muted loop>
+            <source src="footer.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="#">About Us</a>
+                <a href="#">Courses</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+            <div class="footer-copy">
+                &copy; 2023 Edu<sup>2</sup>. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result Page</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 1rem;
+        }
+        .result {
+            width: 100%;
+            max-width: 800px;
+            background: #fff;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .progress-bar {
+            height: 25px;
+            background: #f3f3f3;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .progress-bar span {
+            display: block;
+            height: 100%;
+            background: #4CAF50;
+            border-radius: 12px;
+            width: 0;
+            transition: width 1s;
+        }
+        .rewards {
+            display: none;
+            margin-top: 20px;
+            background: #f0f0f0;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .rewards table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .rewards table, .rewards th, .rewards td {
+            border: 1px solid #ddd;
+        }
+        .rewards th, .rewards td {
+            padding: 8px;
+            text-align: left;
+        }
+        .rewards th {
+            background-color: #f4f4f4;
+        }
+        .rewards-button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="result">
+            <h1>Quiz Results</h1>
+            <div class="progress-bar">
+                <span id="progressBar"></span>
+            </div>
+            <div id="rewardContainer" class="rewards">
+                <h3>Rewards</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rewardsList"></tbody>
+                </table>
+            </div>
+            <button onclick="toggleRewards()" class="rewards-button">Rewards</button>
+            <p id="resultMessage"></p>
+            <button onclick="window.location.href='student.html'">Back to Home</button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBar = document.getElementById('progressBar');
+            const resultMessage = document.getElementById('resultMessage');
+            const rewardContainer = document.getElementById('rewardContainer');
+            const rewardsList = document.getElementById('rewardsList');
+            
+            const { score } = JSON.parse(localStorage.getItem('quizScore') || '{}');
+            const totalQuestions = 5; // Total questions in the quiz
+            const percentage = (score / totalQuestions) * 100;
+
+            progressBar.style.width = `${percentage}%`;
+            resultMessage.textContent = `You scored ${score} out of ${totalQuestions}.`;
+
+            if (score >= 3) {
+                particlesJS('rewardContainer', {
+                    particles: {
+                        number: {
+                            value: 100,
+                            density: {
+                                enable: true,
+                                value_area: 800
+                            }
+                        },
+                        color: {
+                            value: ['#ff0000', '#00ff00', '#0000ff']
+                        },
+                        shape: {
+                            type: 'rect'
+                        },
+                        opacity: {
+                            value: 0.7,
+                            random: true,
+                            anim: {
+                                enable: true,
+                                speed: 1,
+                                opacity_min: 0.1,
+                                sync: false
+                            }
+                        },
+                        size: {
+                            value: 5,
+                            random: true,
+                            anim: {
+                                enable: true,
+                                speed: 10,
+                                size_min: 0.1,
+                                sync: false
+                            }
+                        },
+                        line_linked: {
+                            enable: false
+                        },
+                        move: {
+                            enable: true,
+                            speed: 3,
+                            direction: 'bottom',
+                            random: false,
+                            straight: false,
+                            out_mode: 'out',
+                            bounce: false,
+                            attract: {
+                                enable: false,
+                                rotateX: 600,
+                                rotateY: 1200
+                            }
+                        }
+                    },
+                    retina_detect: true
+                });
+            }
+
+            function toggleRewards() {
+                rewardContainer.style.display = rewardContainer.style.display === 'none' ? 'block' : 'none';
+                const studentResults = JSON.parse(localStorage.getItem('studentResults')) || [];
+                rewardsList.innerHTML = studentResults.map(s => `
+                    <tr>
+                        <td>${s.name}</td>
+                        <td>${s.email}</td>
+                        <td>${s.score}</td>
+                    </tr>
+                `).join('');
+            }
+
+            window.toggleRewards = toggleRewards;
+        });
+    </script>
+</body>
+</html>

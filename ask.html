@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edu Square - Ask Question</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #003d80;
+            padding: 15px 30px;
+            color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logout-btn {
+            background-color: #e94e77;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 25px;
+            font-size: 15px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            margin-right: 100px;
+        }
+
+        .logout-btn:hover {
+            background-color: #d43f67;
+            box-shadow: 0 0 10px rgba(233, 78, 119, 0.4);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            overflow: hidden;
+            margin-top: 80px; /* Adjust for navbar height */
+            margin-bottom: 30px;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(70%);
+        }
+
+        .container {
+            max-width: 800px;
+            width: 90%;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 0 auto; /* Center the container */
+            margin-top: 20px;
+            margin-bottom: 100px; /* Ensure space for footer */
+        }
+
+        h1 {
+            color: #003d80;
+            margin-bottom: 20px;
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        textarea {
+            width: calc(100% - 30px); /* Ensure padding is accounted for */
+            height: 140px;
+            padding: 15px;
+            margin: 20px 0;
+            border: 2px solid #003d80;
+            border-radius: 10px;
+            font-size: 16px;
+            background-color: #f0f4f8;
+            resize: none;
+            box-sizing: border-box;
+            transition: border-color 0.3s, background-color 0.3s;
+        }
+
+        textarea:focus {
+            border-color: #002a62;
+            background-color: #e8f0fe;
+            outline: none;
+        }
+
+        button {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #003d80;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #002a62;
+            box-shadow: 0 0 10px rgba(0, 61, 128, 0.5);
+        }
+
+        .answer {
+            margin-top: 30px;
+            background-color: #f4f7f9;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 18px;
+            line-height: 1.6;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: none;
+            text-align: left;
+            white-space: pre-wrap;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top-color: #003d80;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        .course-price {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #ffd700;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .discount {
+            color: #e94e77;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .edu-square-details {
+            background-color: #e0e4e8;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: left;
+            margin-top: 20px;
+            line-height: 1.6;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .edu-square-details h2 {
+            color: #003d80;
+            font-size: 24px;
+            margin-top: 0;
+        }
+
+        .edu-square-details p, .edu-square-details ul {
+            margin: 10px 0;
+        }
+
+        .edu-square-details ul {
+            padding-left: 20px;
+        }
+
+        .edu-square-details ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            background-color: #003d80;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+            margin-top: auto; /* Push footer to the bottom */
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Edu Square Ask question❓</div>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </nav>
+
+    <div class="video-container">
+        <video autoplay muted loop>
+            <source src="offer.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="container">
+        <h1>Clarify Your Questions with Edu² Astronaut👩‍🚀</h1>
+        <textarea id="question" placeholder="Type your question here..."></textarea>
+        <button onclick="askQuestion()">Ask</button>
+        <div id="answer" class="answer"></div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Edu Square. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function askQuestion() {
+            const question = document.getElementById('question').value;
+            if (question.trim() === "") {
+                alert("Please enter a question.");
+                return;
+            }
+
+            const answerDiv = document.getElementById('answer');
+            answerDiv.style.display = "block";
+            answerDiv.innerHTML = '<div class="spinner"></div> Thinking...';
+
+            // Simulate AI-based answer with a delay
+            setTimeout(() => {
+                const answer = getAIAnswer(question);
+                answerDiv.innerHTML = answer;
+            }, 2000);
+        }
+
+        function getAIAnswer(question) {
+            const courses = {
+                'html': {
+                    type: 'free',
+                    details: `<i class="fas fa-code"></i> <strong>HTML:</strong> Learn the basics of structuring web content, including elements, attributes, tables, forms, and multimedia integration. <br><br><em>Additional Info:</em> HTML is the foundation of web development. Mastering it allows you to structure content effectively.`,
+                },
+                'css': {
+                    type: 'free',
+                    details: `<i class="fas fa-paint-brush"></i> <strong>CSS:</strong> Learn to style and layout web pages using stylesheets, including Flexbox, Grid, and responsive design techniques. <br><br><em>Additional Info:</em> CSS makes your web pages visually appealing and is crucial for creating responsive designs.`,
+                },
+                'javascript': {
+                    type: 'both',
+                    details: `<i class="fas fa-js"></i> <strong>JavaScript:</strong> Learn to make web pages interactive with DOM manipulation, event handling, and modern JavaScript features like ES6+. <br><br><em>Additional Info:</em> JavaScript is essential for dynamic web development, making your site interactive and user-friendly.`,
+                    price: 199,
+                    discount: '15% off'
+                },
+                'java': {
+                    type: 'both',
+                    details: `<i class="fas fa-java"></i> <strong>Java:</strong> Master the fundamentals of Java programming, including object-oriented principles, data structures, and advanced Java frameworks. <br><br><em>Additional Info:</em> Java is widely used in enterprise-level applications and Android development, making it a valuable skill.`,
+                    price: 299,
+                    discount: '20% off'
+                },
+                'php': {
+                    type: 'free',
+                    details: `<i class="fas fa-database"></i> <strong>PHP:</strong> Learn to create dynamic server-side applications, handle form data, work with databases, and build secure web applications.<br><br><em>Additional Info:</em> PHP is the backbone of many websites and is critical for backend development.`,
+                },
+                'ai': {
+                    type: 'paid',
+                    details: `<i class="fas fa-robot"></i> <strong>AI:</strong> Learn Artificial Intelligence concepts from basics to intermediate level, including machine learning, neural networks, and AI development frameworks. <br><br><em>Additional Info:</em> AI is revolutionizing industries. Understanding AI will position you at the forefront of innovation.`,
+                    price: 499,
+                    discount: '25% off'
+                },
+                'data science': {
+                    type: 'paid',
+                    details: `<i class="fas fa-chart-line"></i> <strong>Data Science:</strong> Master data analysis, machine learning, and statistical modeling using tools like Python, R, and SQL. <br><br><em>Additional Info:</em> Data Science is a rapidly growing field with applications in numerous industries. It is key to making data-driven decisions.`,
+                    price: 399,
+                    discount: '20% off'
+                },
+                'advanced java': {
+                    type: 'paid',
+                    details: `<i class="fas fa-cogs"></i> <strong>Advanced Java:</strong> Dive deeper into Java with topics like concurrency, performance optimization, and JVM internals.<br><br><em>Additional Info:</em> Advanced Java is essential for building complex, scalable enterprise applications.`,
+                    price: 349,
+                    discount: '10% off'
+                }
+            };
+
+            if (question.toLowerCase().includes("edu square") || question.toLowerCase().includes("website")) {
+                return `
+                    <div class="edu-square-details">
+                        <h2><i class="fas fa-graduation-cap"></i> About Edu Square</h2>
+                        <p>Edu Square is an innovative online learning platform designed to provide high-quality educational resources across a wide range of subjects. Our platform offers both free and paid courses, with a focus on practical, real-world applications.</p>
+                        <p><strong><i class="fas fa-star"></i> Features:</strong></p>
+                        <ul>
+                            <li><i class="fas fa-laptop-code"></i> Interactive courses and real-time projects.</li>
+                            <li><i class="fas fa-clock"></i> Accessible from anywhere, anytime.</li>
+                            <li><i class="fas fa-chalkboard-teacher"></i> Professional instructors and up-to-date content.</li>
+                            <li><i class="fas fa-project-diagram"></i> Hands-on projects to apply your learning.</li>
+                        </ul>
+                        <p><strong><i class="fas fa-tachometer-alt"></i> Benefits:</strong></p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> High-quality educational content curated by experts.</li>
+                            <li><i class="fas fa-calendar-alt"></i> Flexible learning schedules to fit your needs.</li>
+                            <li><i class="fas fa-users"></i> Supportive community and expert guidance.</li>
+                            <li><i class="fas fa-certificate"></i> Certifications upon course completion.</li>
+                        </ul>
+                        <p><strong><i class="fas fa-rocket"></i> Real-Time Projects:</strong></p>
+                        <p>Our platform includes various real-time projects to enhance your learning experience. These projects are designed to simulate real-world scenarios, helping you to apply theoretical knowledge practically and effectively.</p>
+                    </div>
+                `;
+            }
+
+            const courseName = question.toLowerCase().trim();
+            const course = courses[courseName];
+
+            if (course) {
+                let response = `<strong><i class="${courseName === 'html' ? 'fas fa-code' : courseName === 'css' ? 'fas fa-paint-brush' : courseName === 'javascript' ? 'fas fa-js' : courseName === 'java' ? 'fas fa-java' : courseName === 'php' ? 'fas fa-database' : courseName === 'ai' ? 'fas fa-robot' : courseName === 'data science' ? 'fas fa-chart-line' : 'fas fa-cogs'}"></i> ${courseName.charAt(0).toUpperCase() + courseName.slice(1)}:</strong> ${course.details}`;
+                
+                if (course.price) {
+                    response += `<div class="course-price">Price: $${course.price} <br><span class="discount">(${course.discount})</span></div>`;
+                }
+                
+                return response;
+            } else {
+                return "Sorry, I don't have information about that topic. Please try asking about HTML, CSS, JavaScript, Java, PHP, AI, Data Science, or Advanced Java.";
+            }
+        }
+
+        function logout() {
+            alert("You have been logged out.");
+            // You can redirect to a logout page or perform logout actions here
+        }
+    </script>
+</body>
+</html>
