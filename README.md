@@ -43,8 +43,6 @@ A web-based **quiz platform** designed for students and admins to make learning 
 ---
 <img width="1348" height="634" alt="Screenshot (52)" src="https://github.com/user-attachments/assets/d078006f-de04-42f9-b22a-6b5be723abd5" />
 ---
-<img width="1318" height="604" alt="Screenshot (54)" src="https://github.com/user-attachments/assets/077c7e7c-49b2-4fbb-b159-d36773b56af4" />
----
 <img width="1353" height="638" alt="Screenshot (68)" src="https://github.com/user-attachments/assets/fba58539-137a-4a8b-bfc2-e879dd0199e2" />
 ---
 <img width="1350" height="640" alt="Screenshot (69)" src="https://github.com/user-attachments/assets/870efc6b-5c51-45bf-9f26-9627fd341b57" />
