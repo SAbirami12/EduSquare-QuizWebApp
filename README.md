@@ -1,55 +1,83 @@
-# Splash.AI 🌊🤖  
-An AI-powered web application that combines multiple intelligent features including text-to-image generation, language translation, and speech synthesis.
----
-## 🧠 Features
-- 🎨 **Text-to-Image Generation**: Create images from user input using AI.
-- 🌍 **Multilingual Translation**: Translate input text into multiple languages.
-- 🔊 **Text-to-Speech**: Convert translated text into spoken audio.
----
-## 🚀 Technologies Used
-- **Python**
-- **Flask** (Web framework)
-- **HTML5**, **CSS3**, **JavaScript**
-- **Google Translate API**
-- **gTTS** (Google Text-to-Speech)
-**HuggingFaceAPI** (Image Generation)
----
-## ⚙️ How to Run the Project
-1. **Clone the repository**
-   git clone https://github.com/SAbirami12/SplashAI.git
-   cd SplashAI
-2. **Install dependencies**
-pip install -r requirements.txt
-3. **Run the application**
-python app.py
-3. **Access the app**
-Open your browser and go to:
-http://127.0.0.1:5000
-----
-## 📸 Screenshots 
-![image](https://github.com/user-attachments/assets/1cc98c01-0687-4f86-83c2-883dbdaab144)
-![image](https://github.com/user-attachments/assets/4caabca6-79fa-447e-91c9-b61119cd29f6)
-![image](https://github.com/user-attachments/assets/a118ba12-2aa6-4cc6-95eb-dfdef14b5b62)
-![image](https://github.com/user-attachments/assets/e8d476c4-7f08-48a7-92bb-3a9549ef364d)
-![image](https://github.com/user-attachments/assets/4e72ade1-259c-4076-8296-0b5334c959d3)
+# EduSquare 🎓📝  
+A web-based **quiz platform** designed for students and admins to make learning interactive, fun, and efficient. EduSquare provides real-time scoring, animated progress tracking, and role-based access for smooth management of quizzes.  
 
-##📁 Folder Structure 
-SplashAI/
-├── static/
-├── templates/
-├── app.py
-├── requirements.txt
+---
+
+## 🧠 Features  
+- 👩‍🎓 **Student Dashboard** – Attempt quizzes, track scores, and view progress.  
+- 👨‍🏫 **Admin Panel** – Add, edit, and delete questions with ease.  
+- 📊 **Real-Time Scoring** – Get instant results with attractive progress bars.  
+- 🔐 **Role-Based Access** – Different portals for students and admins.  
+- 📱 **Responsive UI** – Optimized for both desktop and mobile devices.  
+
+---
+
+## 🚀 Technologies Used  
+- **Frontend:** HTML5, CSS3, JavaScript  
+- **Backend:** PHP / JavaScript (depending on version)  
+- **Database:** MySQL  
+- **Version Control:** Git & GitHub  
+
+---
+
+## ⚙️ How to Run the Project  
+
+1. **Clone the repository**  
+   ```bash
+   git clone https://github.com/SAbirami12/EduSquare-QuizWebApp.git
+   cd EduSquare-QuizWebApp
+2.  **Set up the database**
+    * Import the provided .sql file into MySQL.
+    * Update database credentials inside config.php (or respective file).
+3.  **Run locally**
+    * If PHP-based: place the project in htdocs folder of XAMPP/WAMP and start Apache & MySQL.
+    * Open your browser and go to:
+      - http://localhost/EduSquare-QuizWebApp
+
+---
+
+## 📸 Screenshots
+<img width="1343" height="631" alt="Screenshot (57)" src="https://github.com/user-attachments/assets/9cb4719f-9e2b-442d-81a6-3cdd060ad82e" />
+<img width="1351" height="618" alt="Screenshot (59)" src="https://github.com/user-attachments/assets/f25c35f0-6941-4698-8bf8-9145c13132e9" />
+<img width="1348" height="634" alt="Screenshot (52)" src="https://github.com/user-attachments/assets/d078006f-de04-42f9-b22a-6b5be723abd5" />
+<img width="1318" height="604" alt="Screenshot (54)" src="https://github.com/user-attachments/assets/077c7e7c-49b2-4fbb-b159-d36773b56af4" />
+<img width="1353" height="638" alt="Screenshot (68)" src="https://github.com/user-attachments/assets/fba58539-137a-4a8b-bfc2-e879dd0199e2" />
+<img width="1350" height="640" alt="Screenshot (69)" src="https://github.com/user-attachments/assets/870efc6b-5c51-45bf-9f26-9627fd341b57" />
+<img width="1349" height="622" alt="Screenshot (65)" src="https://github.com/user-attachments/assets/40f54a1c-26fa-4847-b036-1514711aa1bb" />
+<img width="1351" height="633" alt="Screenshot (71)" src="https://github.com/user-attachments/assets/145f20af-8c7b-4233-9516-2b9690f84c65" />
+<img width="1334" height="626" alt="Screenshot (66)" src="https://github.com/user-attachments/assets/5eb2e99d-2e93-492d-8d44-e82661904ca0" />
+
+--- 
+
+
+## 📁 Folder Structure
+EduSquare-QuizWebApp/
+├── assets/           # CSS, JS, images
+├── sql/              # Database schema
+├── index.html        # Landing page
+├── student.html      # Student dashboard
+├── admin.html        # Admin dashboard
+├── config.php        # Database configuration
 └── README.md
 
-##🧑‍💻 About the Developer
-## 🙋‍♀️ About the Developer
+---
 
-**Abirami S**  
+##🧑‍💻 About the Developer
+
+**Abirami S**
 Postgraduate in Computer Science | Full-Stack Developer | AI Enthusiast
 
-I’m passionate about coding, developing scalable applications, and integrating innovative AI-driven solutions. I enjoy learning new technologies and collaborating on dynamic projects.
+Passionate about coding, building scalable applications, and creating impactful web solutions. Experienced in Python, Laravel, Flask, and JavaScript with real-world project deployments.
 
-📧 Feel free to reach out to me via email: [abirami02612@gmail.com](mailto:abirami02612@gmail.com)  
-🔗 [LinkedIn](https://www.linkedin.com/in/abirami-s-608161342)
+📧 Email: abirami02612@gmail.com
+
+🔗 LinkedIn: Abirami S
+
+💻 GitHub: SAbirami12
+
+⚡ EduSquare – Making quizzes smarter, one question at a time!
+---
+
+
 
 
