@@ -76,7 +76,7 @@ Postgraduate in Computer Science | Full-Stack Developer | AI Enthusiast
 
 Passionate about coding, building scalable applications, and creating impactful web solutions. Experienced in Python, Laravel, Flask, and JavaScript with real-world project deployments.
 
-📧 Email: abirami02612@gmail.com
+📧 Email: abhirami02612@gmail.com
 
 🔗 LinkedIn: Abirami S
 
